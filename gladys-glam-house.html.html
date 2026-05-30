@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gladys Glam House — Premium Hair Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #FAF6F0;
+    --dark: #1A1208;
+    --brown: #3D2B1F;
+    --text: #4A3728;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,246,240,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--dark); letter-spacing: 1px;
+  }
+  .logo span { color: var(--gold); font-style: italic; }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a {
+    text-decoration: none; color: var(--text);
+    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500; transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  .nav-btn {
+    background: var(--gold); color: #fff; border: none;
+    padding: 12px 28px; font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s;
+  }
+  .nav-btn:hover { background: var(--brown); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px;
+    background: var(--cream);
+    animation: fadeInLeft 1s ease forwards;
+  }
+  .hero-tag {
+    font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px; font-weight: 500;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1; color: var(--dark);
+    margin-bottom: 28px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 300;
+    line-height: 1.8; color: var(--brown);
+    max-width: 440px; margin-bottom: 48px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: #fff; border: none;
+    padding: 16px 36px; font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--dark); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--dark);
+    border: 1px solid var(--dark);
+    padding: 16px 36px; font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-outline:hover { background: var(--dark); color: var(--cream); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #3D2B1F 0%, #1A1208 100%);
+  }
+  .hero-img-overlay {
+    position: absolute; inset: 0;
+    background: url('https://media.istockphoto.com/id/1306817644/photo/in-a-hair-salon.jpg?s=1024x1024&w=is&k=20&c=o_wFMBCgx1HSEMF4v_LTquWajhjk4vW7qbWks77Avxo=') center/cover no-repeat;
+    opacity: 0.6;
+  }
+  .hero-badge {
+    position: absolute; bottom: 60px; left: -20px;
+    background: var(--gold); color: #fff;
+    padding: 24px 32px;
+    font-family: 'Playfair Display', serif;
+  }
+  .hero-badge .num { font-size: 2.4rem; font-weight: 700; display: block; }
+  .hero-badge .label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; font-style: italic; }
+
+  /* STATS */
+  .stats {
+    background: var(--dark);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    padding: 0;
+  }
+  .stat {
+    padding: 48px 40px;
+    border-right: 1px solid rgba(201,168,76,0.2);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .stat:hover { background: rgba(201,168,76,0.1); }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; color: var(--gold); font-weight: 700;
+  }
+  .stat-label {
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-top: 8px;
+  }
+
+  /* SERVICES */
+  .services { padding: 120px 60px; background: var(--cream); }
+  .section-header { text-align: center; margin-bottom: 80px; }
+  .section-tag {
+    font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--dark); line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .divider {
+    width: 60px; height: 2px; background: var(--gold);
+    margin: 24px auto 0;
+  }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .service-card {
+    background: #fff; padding: 56px 40px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.4s; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 3px; background: var(--gold);
+    transition: width 0.4s;
+  }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+  .service-icon {
+    font-size: 2.4rem; margin-bottom: 24px; display: block;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--dark); margin-bottom: 16px;
+  }
+  .service-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; color: var(--brown); line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .service-price {
+    font-size: 0.75rem; letter-spacing: 2px; color: var(--gold);
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  /* GALLERY */
+  .gallery { padding: 0 0 120px; background: var(--cream); }
+  .gallery-header { padding: 0 60px 60px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 4px;
+  }
+  .gallery-item {
+    overflow: hidden; position: relative; cursor: pointer;
+  }
+  .gallery-item:first-child { grid-row: 1 / 3; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(201,168,76,0);
+    transition: background 0.4s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-item:hover .gallery-overlay { background: rgba(201,168,76,0.3); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--dark); padding: 120px 60px; }
+  .testimonials .section-title { color: var(--cream); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+    margin-top: 60px;
+  }
+  .testimonial {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 48px 40px;
+    transition: border-color 0.3s;
+  }
+  .testimonial:hover { border-color: var(--gold); }
+  .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 24px; letter-spacing: 4px; }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: rgba(255,255,255,0.8);
+    line-height: 1.8; margin-bottom: 32px; font-style: italic;
+  }
+  .testimonial-name {
+    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+
+  /* BOOK */
+  .book {
+    background: var(--gold);
+    padding: 100px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff; line-height: 1.2;
+  }
+  .book-title em { font-style: italic; }
+  .book-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: rgba(255,255,255,0.85);
+    line-height: 1.7; margin-top: 20px;
+  }
+  .book-form { display: flex; flex-direction: column; gap: 16px; }
+  .book-form input, .book-form select {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 16px 20px; color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+    outline: none; transition: border-color 0.3s;
+  }
+  .book-form input::placeholder { color: rgba(255,255,255,0.6); }
+  .book-form input:focus, .book-form select:focus { border-color: #fff; }
+  .book-form select option { color: var(--dark); background: #fff; }
+  .book-submit {
+    background: var(--dark); color: #fff; border: none;
+    padding: 18px; font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s;
+  }
+  .book-submit:hover { background: var(--brown); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); padding: 60px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+  }
+  .footer-brand .logo { font-size: 1.6rem; }
+  .footer-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: rgba(255,255,255,0.5);
+    line-height: 1.8; margin-top: 16px; max-width: 300px;
+  }
+  .footer-col h4 {
+    font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul a {
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: rgba(255,255,255,0.6);
+    transition: color 0.3s;
+  }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    background: var(--dark); padding: 20px 60px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    font-size: 0.7rem; letter-spacing: 1px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 400px; }
+    .hero-left { padding: 60px 24px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .services { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:first-child { grid-row: auto; grid-column: 1 / 3; }
+    .testimonials { padding: 80px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .book { grid-template-columns: 1fr; padding: 60px 24px; }
+    footer { grid-template-columns: 1fr; padding: 60px 24px; }
+    .footer-bottom { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Gladys <span>Glam</span> House</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#book">Contact</a></li>
+  </ul>
+  <button class="nav-btn">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">✦ Lagos Premier Hair Studio</p>
+    <h1 class="hero-title">Where Beauty<br>Becomes <em>Art</em></h1>
+    <p class="hero-desc">Step into a world of luxury hair care. From bold transformations to timeless classics — your perfect look begins here at Gladys Glam House.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Book Appointment</button>
+      <button class="btn-outline">View Services</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-overlay"></div>
+    <div class="hero-badge">
+      <span class="num">500+</span>
+      <span class="label">Happy Clients</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">8+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Happy Clients</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">20+</div>
+    <div class="stat-label">Services Offered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">Average Rating</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-tag">✦ What We Offer</p>
+    <h2 class="section-title">Our <em>Signature</em> Services</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">💆‍♀️</span>
+      <h3 class="service-name">Hair Relaxing & Treatment</h3>
+      <p class="service-desc">Professional relaxing with premium products that protect and nourish your hair from root to tip.</p>
+      <span class="service-price">From ₦8,000</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <h3 class="service-name">Cut & Style</h3>
+      <p class="service-desc">Precision cuts and expert styling tailored to your face shape, lifestyle, and personal taste.</p>
+      <span class="service-price">From ₦5,000</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌿</span>
+      <h3 class="service-name">Natural Hair Care</h3>
+      <p class="service-desc">Specialized care for natural hair — twists, locs, wash-and-go, and deep conditioning treatments.</p>
+      <span class="service-price">From ₦6,500</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">👑</span>
+      <h3 class="service-name">Braids & Weaves</h3>
+      <p class="service-desc">Knotless braids, box braids, cornrows, weave installs — all done with care and precision.</p>
+      <span class="service-price">From ₦12,000</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <h3 class="service-name">Hair Colouring</h3>
+      <p class="service-desc">From subtle highlights to full bold colour transformations. Expert colour application every time.</p>
+      <span class="service-price">From ₦15,000</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✨</span>
+      <h3 class="service-name">Bridal Package</h3>
+      <p class="service-desc">Complete bridal hair styling and preparation packages for your most special day.</p>
+      <span class="service-price">From ₦35,000</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header section-header">
+    <p class="section-tag">✦ Our Work</p>
+    <h2 class="section-title">The <em>Glam</em> Gallery</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://media.istockphoto.com/id/1350573811/photo/hairstylists-braiding-and-extending-a-clients-hair-in-salon.jpg?s=1024x1024&w=is&k=20&c=X9heipbCHVeZ3XIyJqexTNnAgWWnHEULTuNt5j2Rvd8=" alt="Hairstylists braiding hair in salon">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://media.istockphoto.com/id/1272756907/photo/stop-by-for-the-hippest-haircuts-in-the-city.jpg?s=1024x1024&w=is&k=20&c=1e8ypAWZQArK26E7CPPjw2H7i0vUs5ocg3EfPL5RCPg=" alt="Hair salon styling">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://media.istockphoto.com/id/1347870064/photo/black-woman-texting-on-mobile-phone-while-washing-hair-at-hairdressers.jpg?s=1024x1024&w=is&k=20&c=KTQqxGHCuh8s9co44HkkopyMBC5-6cpLyGD0g8hnkhU=" alt="Black woman washing hair at salon">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://media.istockphoto.com/id/1350573937/photo/portrait-of-two-beauty-stylists-in-salon.jpg?s=1024x1024&w=is&k=20&c=4Y04kqA-Q8dRfKggHvubP2BZFWY83PFEjwe6T5Wi9Tk=" alt="Beauty stylists in salon">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://media.istockphoto.com/id/1306817644/photo/in-a-hair-salon.jpg?s=1024x1024&w=is&k=20&c=o_wFMBCgx1HSEMF4v_LTquWajhjk4vW7qbWks77Avxo=" alt="In a hair salon">
+      <div class="gallery-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header">
+    <p class="section-tag">✦ Client Love</p>
+    <h2 class="section-title" style="color:var(--cream)">What They're <em style="color:var(--gold)">Saying</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Gladys transformed my hair completely. The atmosphere is so luxurious and the results speak for themselves. I won't go anywhere else!"</p>
+      <p class="testimonial-name">— Chioma A., Victoria Island</p>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Best braiding experience in Lagos. Clean, professional, and my knotless braids lasted 8 weeks looking perfect. Highly recommend!"</p>
+      <p class="testimonial-name">— Folake B., Lekki</p>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"I did my bridal package here and looked absolutely stunning on my wedding day. Gladys and her team are pure magic."</p>
+      <p class="testimonial-name">— Amaka O., Ikoyi</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book">
+  <div>
+    <h2 class="book-title">Ready for Your<br><em>Glow Up?</em></h2>
+    <p class="book-desc">Book your appointment today and let us give you the hair of your dreams. Walk in as you are, walk out as the best version of yourself.</p>
+    <br><br>
+    <p style="color:rgba(255,255,255,0.9); font-size:0.85rem; letter-spacing:1px;">📞 +234 800 000 0000</p>
+    <p style="color:rgba(255,255,255,0.9); font-size:0.85rem; letter-spacing:1px; margin-top:8px;">📍 14 Glam Street, Lekki Phase 1, Lagos</p>
+    <p style="color:rgba(255,255,255,0.9); font-size:0.85rem; letter-spacing:1px; margin-top:8px;">🕐 Mon–Sat: 8am – 8pm</p>
+  </div>
+  <div class="book-form">
+    <input type="text" placeholder="Your Full Name">
+    <input type="tel" placeholder="Phone Number (WhatsApp)">
+    <select>
+      <option value="" disabled selected>Select a Service</option>
+      <option>Hair Relaxing & Treatment</option>
+      <option>Cut & Style</option>
+      <option>Natural Hair Care</option>
+      <option>Braids & Weaves</option>
+      <option>Hair Colouring</option>
+      <option>Bridal Package</option>
+    </select>
+    <input type="date">
+    <button class="book-submit">Book My Appointment</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="logo">Gladys <span>Glam</span> House</div>
+    <p class="footer-desc">Lagos' premier destination for luxury hair care. Where every client leaves feeling beautiful, confident, and glam.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#">Hair Relaxing</a></li>
+      <li><a href="#">Cut & Style</a></li>
+      <li><a href="#">Natural Hair</a></li>
+      <li><a href="#">Braids & Weaves</a></li>
+      <li><a href="#">Colouring</a></li>
+      <li><a href="#">Bridal Package</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Connect</h4>
+    <ul>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">WhatsApp</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">TikTok</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2026 Gladys Glam House. All rights reserved. Built with ❤️ in Lagos.
+</div>
+
+</body>
+</html>
